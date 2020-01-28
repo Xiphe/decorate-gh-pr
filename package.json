@@ -1,0 +1,35 @@
+{
+  "name": "decorate-gh-pr",
+  "version": "0.0.0-development",
+  "description": "utility to add updatable comments to github pull requests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Xiphe/decorate-gh-pr.git"
+  },
+  "keywords": [
+    "github",
+    "pull-request",
+    "update",
+    "notify",
+    "decorate",
+    "comment"
+  ],
+  "author": "Hannes Diercks <node@xiphe.net> (https://xiphe.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xiphe/decorate-gh-pr/issues"
+  },
+  "homepage": "https://github.com/Xiphe/decorate-gh-pr#readme",
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-prettier": "3.1.2",
+    "prettier": "1.19.1"
+  }
+}
