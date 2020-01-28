@@ -1,6 +1,6 @@
 {
   "name": "decorate-gh-pr",
-  "version": "0.0.0-development",
+  "version": "0.1.0",
   "description": "utility to add updatable comments to github pull requests",
   "main": "index.js",
   "bin": {
