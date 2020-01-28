@@ -11,6 +11,7 @@ const argv = minimist(process.argv.slice(2), {
     c: 'comment',
     i: 'id',
     p: 'pr',
+    r: 'prepend',
   },
 });
 
@@ -33,6 +34,8 @@ if (argv.help) {
       '',
       '  -f, --file     JavaScript file producing a Promise resolving to comment',
       '  -c, --comment  The comment',
+      '  -r, --prepend  (Optional) Prepend new comments to the PR body',
+      '                 Default: false - comment is appended at the end',
       '  -i, --id       (Optional) Custom Identifier for the comment',
       '                 Default: "decorate-gh-pr"',
       '  -p, --pr       (Optional) PR identifier. Example: Xiphe/decorate-gh-pr#1',
@@ -42,20 +45,22 @@ if (argv.help) {
   process.exit(exit);
 }
 
-decorateGhPR(
-  argv.file
-    ? /* eslint-disable-next-line import/no-dynamic-require */
+const config = {
+  comment: argv.file
+    ? /* eslint-disable-next-line import/no-dynamic-require, global-require */
       require(path.resolve(process.cwd(), argv.file))()
     : argv.comment,
-  argv.id && argv.id.length ? argv.id : undefined,
-  argv.pr
+  prepend: argv.prepend,
+  env: argv.pr
     ? {
         isPr: true,
         slug: argv.pr.split('#')[0].trim(),
         pr: parseInt(argv.pr.split('#')[1].trim(), 10),
       }
     : undefined,
-).then(
+  id: argv.id && argv.id.length ? argv.id : undefined,
+};
+decorateGhPR(config).then(
   () => console.log('OK'),
   (err) => {
     console.error(err);

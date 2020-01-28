@@ -2,11 +2,12 @@ const envCi = require('env-ci');
 const Octokit = require('@octokit/rest');
 const { name: pkgName, version: pkgVersion } = require('./package.json');
 
-module.exports = async function decorateGhPr(
+module.exports = async function decorateGhPr({
   comment,
   id = 'decorate-gh-pr',
+  prepend = false,
   env = envCi(),
-) {
+}) {
   if (!env.isPr) {
     throw new Error('Can not decorate a non-existent PR');
   }
@@ -34,12 +35,15 @@ module.exports = async function decorateGhPr(
     '\n',
   );
 
+  const inserted = prepend
+    ? `${newComment}\n\n${body}`
+    : `${body}\n\n${newComment}`;
   const newBody = hasComment
     ? body.replace(
         new RegExp(`<!-- ${id} -->(.|\n|\r)*<!-- /${id} -->`, 'gm'),
         newComment,
       )
-    : `${body}\n\n${newComment}`;
+    : inserted;
 
   await octokit.pulls.update({
     owner,
