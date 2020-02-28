@@ -1,6 +1,8 @@
 const envCi = require('env-ci');
-const Octokit = require('@octokit/rest');
+const tmpOct = require('@octokit/rest');
 const { name: pkgName, version: pkgVersion } = require('./package.json');
+
+const Octokit = tmpOct.Octokit || tmpOct;
 
 module.exports = async function decorateGhPr({
   comment,
