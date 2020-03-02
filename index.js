@@ -53,4 +53,9 @@ module.exports = async function decorateGhPr({
     pull_number: env.pr,
     body: newBody,
   });
+
+  return {
+    pr: `${owner}/${repo}#${env.pr}`,
+    comment: await comment,
+  };
 };
