@@ -27,6 +27,7 @@ module.exports = {
         ...nextRelease,
         date: new Date(),
       }),
+      compact: pluginConfig.compact,
       prepend: pluginConfig.prepend,
       id: pluginConfig.id,
       env: envCi,
