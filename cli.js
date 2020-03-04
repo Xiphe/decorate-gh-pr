@@ -9,6 +9,7 @@ const argv = minimist(process.argv.slice(2), {
     f: 'file',
     h: 'help',
     c: 'comment',
+    m: 'compact',
     i: 'id',
     p: 'pr',
     r: 'prepend',
@@ -36,10 +37,13 @@ if (argv.help) {
       '  -c, --comment  The comment',
       '  -r, --prepend  (Optional) Prepend new comments to the PR body',
       '                 Default: false - comment is appended at the end',
+      '  -m, --compact  (Optional) Minimize added new-lines and whitespace',
+      '                 Default: false - new comments are added in a new line',
       '  -i, --id       (Optional) Custom Identifier for the comment',
       '                 Default: "decorate-gh-pr"',
       '  -p, --pr       (Optional) PR identifier. Example: Xiphe/decorate-gh-pr#1',
       '                 Default: CI environment from env-ci package',
+      '  -h, --help     Print this message',
     ].join('\n'),
   );
   process.exit(exit);
@@ -51,6 +55,7 @@ const config = {
       require(path.resolve(process.cwd(), argv.file))()
     : argv.comment,
   prepend: argv.prepend,
+  compact: argv.compact,
   env: argv.pr
     ? {
         isPr: true,

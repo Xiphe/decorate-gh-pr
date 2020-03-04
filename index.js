@@ -9,6 +9,7 @@ module.exports = async function decorateGhPr({
   id = 'decorate-gh-pr',
   prepend = false,
   env = envCi(),
+  compact = false,
 }) {
   if (!env.isPr) {
     throw new Error('Can not decorate a non-existent PR');
@@ -34,12 +35,12 @@ module.exports = async function decorateGhPr({
   );
 
   const newComment = [`<!-- ${id} -->`, await comment, `<!-- /${id} -->`].join(
-    '\n',
+    compact ? '' : '\n',
   );
 
   const inserted = prepend
-    ? `${newComment}\n\n${body}`
-    : `${body}\n\n${newComment}`;
+    ? `${newComment}${compact ? ' ' : '\n\n'}${body}`
+    : `${body}${compact ? ' ' : '\n\n'}${newComment}`;
   const newBody = hasComment
     ? body.replace(
         new RegExp(`<!-- ${id} -->(.|\n|\r)*<!-- /${id} -->`, 'gm'),
