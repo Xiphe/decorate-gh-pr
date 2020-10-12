@@ -52,10 +52,10 @@ workflows:
             - install
           filters:
             branches:
-              only: master
+              only: main
       - pre-release:
           requires:
             - install
           filters:
             branches:
-              ignore: master
+              ignore: main
