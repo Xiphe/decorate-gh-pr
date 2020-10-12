@@ -18,7 +18,7 @@ module.exports = async function decorateGhPr({
   const [owner, repo] = env.slug.split('/');
 
   const octokit = new Octokit({
-    auth: process.env.GH_TOKEN,
+    auth: process.env.GITHUB_TOKEN || process.env.GH_TOKEN,
     userAgent: `${pkgName} v${pkgVersion}`,
   });
 
