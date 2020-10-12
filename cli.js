@@ -18,7 +18,7 @@ const argv = minimist(process.argv.slice(2), {
 
 let exit = 0;
 
-if (!argv.file && !argv.comment) {
+if (!argv.file && !argv.comment && !argv.help) {
   console.error('Warning! can not update a PR with no content\n');
   exit = 1;
   argv.help = true;
