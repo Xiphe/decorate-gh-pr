@@ -1,6 +1,7 @@
 // release.config.js
 const isStable = !process.env.PRE_RELEASE;
 
+console.log({ isStable });
 module.exports = {
   branches: [
     '+([0-9])?(.{+([0-9]),x}).x',
