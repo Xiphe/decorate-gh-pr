@@ -1,13 +1,5 @@
 name: 'Install'
 description: 'Checks out the repository and does something'
-outputs:
-  cache:
-    description: 'Cache config for node modules'
-    value:
-      path: node_modules
-      key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
-      restore-keys: |
-        ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
 runs:
   using: 'composite'
   steps:
@@ -20,6 +12,7 @@ runs:
         restore-keys: |
           ${{ runner.os }}-dependencies-v1-
     - run: npm ci
+      shell: bash
       if: |
         steps.dependencies-v1.outputs.cache-hit != 'true'
       env:
