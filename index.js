@@ -23,7 +23,7 @@ module.exports = async function decorateGhPr({
   });
 
   const {
-    data: { body },
+    data: { body = '' },
   } = await octokit.pulls.get({
     owner,
     repo,
