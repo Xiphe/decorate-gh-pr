@@ -1,0 +1,26 @@
+name: 'Install'
+description: 'Checks out the repository and does something'
+outputs:
+  cache:
+    description: 'Cache config for node modules'
+    value:
+      path: node_modules
+      key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
+      restore-keys: |
+        ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v1
+    - uses: actions/cache@v1
+      id: dependencies-v1
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-dependencies-v1-
+    - run: npm ci
+      if: |
+        steps.dependencies-v1.outputs.cache-hit != 'true'
+      env:
+        ADBLOCK: true
