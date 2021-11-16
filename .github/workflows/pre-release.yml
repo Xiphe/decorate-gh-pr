@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - uses: ./.github/actions/install.yml
+      - uses: ../actions/install.yml
       - run: npx semantish-prerelease --release-pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
