@@ -42,6 +42,7 @@ jobs:
           branches: |
             ['main']
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
   pre-release:
     needs: [install]
@@ -60,4 +61,5 @@ jobs:
             ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
       - run: npx semantish-prerelease
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
