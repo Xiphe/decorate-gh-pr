@@ -58,6 +58,6 @@ jobs:
           key: ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-dependencies-v1-${{ hashFiles('package-lock.json') }}
-      - run: npx semantish-prerelease
+      - run: npm i -g semantish-prerelease && semantish-prerelease
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
