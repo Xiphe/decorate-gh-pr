@@ -16,6 +16,7 @@ function resolveComment(comment, args) {
 module.exports = {
   async publish(pluginConfig, { cwd, env, logger, nextRelease }) {
     const envCi = getEnvCi({ cwd, env });
+    console.log({ envCi });
 
     if (!envCi.isPr) {
       logger.log('Skipping PR decoration since no PR was found');
