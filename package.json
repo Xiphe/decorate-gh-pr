@@ -27,6 +27,22 @@
     "url": "https://github.com/Xiphe/decorate-gh-pr/issues"
   },
   "homepage": "https://github.com/Xiphe/decorate-gh-pr#readme",
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      "next",
+      "next-major",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ]
+  },
   "dependencies": {
     "@octokit/rest": "18.12.0",
     "env-ci": "5.4.1",
