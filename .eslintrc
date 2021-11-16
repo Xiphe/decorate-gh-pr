@@ -1,9 +1,0 @@
-{
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "parserOptions": {
-    "sourceType": "script"
-  },
-  "rules": {
-    "arrow-body-style": 0
-  }
-}
