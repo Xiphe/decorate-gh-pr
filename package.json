@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Xiphe/decorate-gh-pr#readme",
   "devDependencies": {
-    "semantic-release": "18.0.0",
+    "semantic-release": "19.0.3",
     "semantish-prerelease": "3.1.4"
   },
   "dependencies": {
