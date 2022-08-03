@@ -11,6 +11,22 @@ module.exports = async function decorateGhPr({
   env = envCi(),
   compact = false,
 }) {
+  if (!env.isCi) {
+    throw new Error('Must run in CI');
+  }
+  if (
+    env.name === 'Bamboo' ||
+    env.name === 'Bitbucket Pipelines' ||
+    env.name === 'AWS CodeBuild' ||
+    env.name === 'Codeship' ||
+    env.name === 'GitLab CI/CD' ||
+    env.name === 'TeamCity' ||
+    env.name === 'Jenkins' ||
+    env.name === 'Visual Studio Team Services' ||
+    env.name === 'Wercker'
+  ) {
+    throw new Error(`${env.name} CI is not supported`);
+  }
   if (!env.isPr) {
     throw new Error('Can not decorate a non-existent PR');
   }
@@ -22,14 +38,17 @@ module.exports = async function decorateGhPr({
     userAgent: `${pkgName} v${pkgVersion}`,
   });
 
+  /** @type {number} */
+  const pull_number = parseInt(/** @type {any} */ (env.pr), 10);
   const {
-    data: { body = '' },
+    data: { body: existingBody },
   } = await octokit.pulls.get({
     owner,
     repo,
-    pull_number: env.pr,
+    pull_number,
   });
 
+  const body = existingBody || '';
   const hasComment = body.match(
     new RegExp(`<!-- ${id} -->(.|\n|\r)*<!-- /${id} -->`, 'gm'),
   );
@@ -51,7 +70,7 @@ module.exports = async function decorateGhPr({
   await octokit.pulls.update({
     owner,
     repo,
-    pull_number: env.pr,
+    pull_number,
     body: newBody,
   });
 
