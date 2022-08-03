@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@octokit/rest": "19.0.3",
+    "date-and-time": "2.4.1",
     "env-ci": "7.3.0",
     "lodash.template": "4.5.0",
     "minimist": "1.2.6"

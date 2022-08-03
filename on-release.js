@@ -1,5 +1,6 @@
 const getEnvCi = require('env-ci');
 const template = require('lodash.template');
+const format = require('date-and-time').format;
 const decorateGhPr = require('./index');
 
 function resolveComment(comment, args) {
@@ -41,11 +42,11 @@ module.exports = {
       return;
     }
 
+    const date = new Date();
+    date.format = (formatString, utc) => format(date, formatString, utc);
+
     const { pr, comment } = await decorateGhPr({
-      comment: resolveComment(pluginConfig.comment, {
-        ...nextRelease,
-        date: new Date(),
-      }),
+      comment: resolveComment(pluginConfig.comment, { ...nextRelease, date }),
       compact: pluginConfig.compact,
       prepend: pluginConfig.prepend,
       id: pluginConfig.id,
