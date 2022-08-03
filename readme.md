@@ -1,9 +1,8 @@
 # decorate-gh-pr
 
-[![CircleCI Status](https://circleci.com/gh/Xiphe/decorate-gh-pr/tree/main.svg?style=shield)](https://app.circleci.com/pipelines/github/Xiphe/decorate-gh-pr?branch=main) 
+[![CircleCI Status](https://circleci.com/gh/Xiphe/decorate-gh-pr/tree/main.svg?style=shield)](https://app.circleci.com/pipelines/github/Xiphe/decorate-gh-pr?branch=main)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![semantish-prerelease](https://img.shields.io/badge/%F0%9F%93%A6%F0%9F%9B%B8-semantish--prerelease-d86b86.svg)](https://github.com/Xiphe/semantish-prerelease)
-
 
 append updatable text to the description of a pull request on GitHub.
 
@@ -52,7 +51,9 @@ decorateGhPr({
   prepend: false,
   env: envCi(),
   compact: false,
-}).catch((err) => { /* handle error */ })
+}).catch((err) => {
+  /* handle error */
+});
 ```
 
 ### With semantic-release
@@ -75,6 +76,23 @@ module.exports = {
       }
     ],
   ]
+};
+```
+
+`comment` can either be a string, or function. `CommentProps` are available as
+variables in lodash template string or passed as argument.
+
+```ts
+type CommentProps = {
+  name: string;
+  type: string;
+  version: string;
+  gitHead: string;
+  gitTag: string;
+  channel?: string;
+  /* Normal Date Object with argumented format() method from 
+     https://www.npmjs.com/package/date-and-time */
+  date: Date & { format: (format: string) => string };
 };
 ```
 
