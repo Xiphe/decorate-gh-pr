@@ -20,7 +20,7 @@ module.exports = {
         prepend: true,
         id: 'foo-bar',
         comment:
-          "<date>(<% print(date.format('YYYY/MM/DD HH:mm:ss')) %>)</date> Pre-released<br /><code>npm install decorate-gh-pr@<%= version %></code><hr />",
+          "Pre-released on <date><% print(date.format('YYYY/MM/DD HH:mm:ss')) %></date><br /><code>npm install decorate-gh-pr@<%= version %></code><hr />",
       },
     ],
     isStable && '@semantic-release/github',
