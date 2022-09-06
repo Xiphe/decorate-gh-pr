@@ -35,7 +35,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "prettier": "2.7.1",
     "semantic-release": "19.0.5",
-    "semantish-prerelease": "4.0.0"
+    "semantish-prerelease": "4.1.0"
   },
   "dependencies": {
     "@octokit/rest": "19.0.4",
