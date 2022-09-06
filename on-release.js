@@ -46,7 +46,11 @@ module.exports = {
     date.format = (formatString, utc) => format(date, formatString, utc);
 
     const { pr, comment } = await decorateGhPr({
-      comment: resolveComment(pluginConfig.comment, { ...nextRelease, date }),
+      comment: resolveComment(pluginConfig.comment, {
+        ...nextRelease,
+        date,
+        name: env.npm_package_name,
+      }),
       compact: pluginConfig.compact,
       prepend: pluginConfig.prepend,
       id: pluginConfig.id,
