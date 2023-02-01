@@ -28,18 +28,18 @@
   },
   "homepage": "https://github.com/Xiphe/decorate-gh-pr#readme",
   "devDependencies": {
-    "eslint": "8.31.0",
+    "eslint": "8.33.0",
     "eslint-config-airbnb-base": "15.0.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-import": "2.26.0",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-import": "2.27.5",
     "eslint-plugin-prettier": "4.2.1",
-    "prettier": "2.8.1",
+    "prettier": "2.8.3",
     "semantic-release": "19.0.5",
-    "semantish-prerelease": "4.0.0"
+    "semantish-prerelease": "4.1.0"
   },
   "dependencies": {
-    "@octokit/rest": "19.0.5",
-    "date-and-time": "2.4.1",
+    "@octokit/rest": "19.0.7",
+    "date-and-time": "2.4.2",
     "env-ci": "7.3.0",
     "lodash.template": "4.5.0",
     "minimist": "1.2.7"
